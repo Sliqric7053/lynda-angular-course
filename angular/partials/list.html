@@ -1,0 +1,38 @@
+<section class="artistpage">
+  <div class="search">
+    <h1>Artist Directory</h1>
+    <label>Search:</label>
+    <input ng-model="query"  placeholder="search for artists" autofocus> <!-- The ngModel directive binds an input,select, textarea (or custom form control) to a property on the scope using NgModelController, which is created and exposed by this directive   -->
+
+    <label class="formgroup">Sort by:
+      <select ng-model="artistOrder">
+        <option value="name">Name</option>
+        <option value="reknown">Reknown</option>
+      </select>
+    </label>
+
+    <label class="formgroup">
+      <input type="radio" ng-model="direction" name="direction" checked>
+      ascending
+    </label>
+    <label class="formgroup">
+      <input type="radio" ng-model="direction" name="direction"  value="reverse">
+      descending
+    </label>
+  </div>
+
+  <ul class="artistlist" ng-show="query"> <!-- ng-show will ensure list items are display only when query is true -->
+    <li ng-animate="animate" class="artist cf" ng-repeat='item in artists | filter: query | orderBy: artistOrder:direction'> <!-- The ngRepeat directive instantiates a template once per item from a collection. Each template instance gets its own scope, where the given loop variable is set to the current collection item, and $index is set to the item index or key.-->
+      <a href="#/details/{{artists.indexOf(item)}}">
+          <!--filter: Selects a subset of items from array and returns it as a new array. -->
+          <!-- orderBy: Returns an array containing the items from the specified collection (ie Array or array-like object), ordered by a comparator function based on the values computed using the expression predicate. -->
+          <!-- For example, [{id: 'foo'}, {id: 'bar'}] | orderBy:'id' would result in [{id: 'bar'}, {id: 'foo'}]. -->
+        <img ng-src="images/{{item.shortname}}_tn.jpg" alt="picture of {{item.name}}"/> <!-- Using Angular markup like {{hash}} in a src attribute doesn't work right: The browser will fetch from the URL with the literal text {{hash}} until Angular replaces the expression inside {{hash}}. The ngSrc directive solves this problem. -->
+        <div class="info">
+          <h2>{{item.name | lowercase}}</h2> <!--Filters are used for formatting data displayed to the user. General syntax in templates is {{ expression [| filter_name[:parameter_value] ... ] }} -->
+          <h3>{{item.reknown}}</h3>
+        </div>
+     </a>
+    </li>
+  </ul>
+</section>
