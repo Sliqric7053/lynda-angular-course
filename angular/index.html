@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+ <html ng-app='myApp'> <!--'ng-app' is a command or commonly known as a directive that tell AngularJS's HTML compiler ($compile) to attach a specified behavior to that DOM element (e.g. via event listeners), or even to transform the DOM element and its children.-->
+  <head>
+    <meta charset="utf-8">
+    <title>Angular Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="lib/angular/angular-route.js" charset="utf-8"></script>
+    <script src="lib/angular/angular-animate.js" charset="utf-8"></script>
+    <script src="js/controllers.js" charset="utf-8"></script> <!-- local url must start at the folder level -->
+    <script src="js/app.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="css/style.css" media="screen" title="no title">
+  </head>
+  <body>
+    <div class="main" ng-view></div>
+  </body>
+</html>
